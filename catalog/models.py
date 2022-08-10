@@ -46,6 +46,7 @@ class Book(models.Model):
         return ', '.join([genre.name for genre in self.genre.all()[:3]])
 
 
+
 class BookInstance(models.Model):
     id = models.UUIDField(
         primary_key=True,
@@ -82,7 +83,7 @@ class BookInstance(models.Model):
         ordering = ['due_back']
 
     def __str__(self):
-        return '%s (%s)' % (self.id, self.book.title)
+        return '{0} {1}'.format(self.id, self.book.title)
 
 
 class Author(models.Model):

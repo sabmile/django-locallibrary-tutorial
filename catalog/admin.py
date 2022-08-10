@@ -6,6 +6,13 @@ from .models import Author, Genre, Book, BookInstance
 admin.site.register(Genre)
 # admin.site.register(BookInstance)
 
+
+class BooksInline(admin.TabularInline):
+    """Defines format of inline book insertion (used in AuthorAdmin)"""
+    model = Book
+
+
+@admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     list_display = (
         'last_name',
@@ -18,9 +25,7 @@ class AuthorAdmin(admin.ModelAdmin):
         'last_name',
         ('date_of_birth', 'date_of_death')
     ]
-
-
-admin.site.register(Author, AuthorAdmin)
+    inlines = [BooksInline]
 
 
 @admin.register(BookInstance)
@@ -40,6 +45,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
 
 
 class BookInstanceInline(admin.TabularInline):
+    """Defines format of inline book instance insertion (used in BookAdmin)"""
     model = BookInstance
 
 
