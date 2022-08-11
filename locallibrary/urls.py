@@ -34,6 +34,9 @@ urlpatterns += [
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+urlpatterns += [
+    path('catalog/', include('catalog.urls'))
+]
 
 # it would be possible to write like this
 # urlpatterns = [
